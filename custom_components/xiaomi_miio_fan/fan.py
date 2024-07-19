@@ -6,6 +6,7 @@ https://home-assistant.io/components/fan.xiaomi_miio/
 """
 import asyncio
 import logging
+import uuid
 from enum import Enum
 from functools import partial
 from typing import Any, Dict, Optional
@@ -512,6 +513,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         )
     elif model == MODEL_FAN_P39:
         fan = FanP39(host, token, model=model)
+        unique_id = uuid.uuid4()
         device = XiaomiFanP39(
             name, fan, model, unique_id, retries, preset_modes_override
         )
